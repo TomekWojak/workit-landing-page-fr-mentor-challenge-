@@ -1,7 +1,146 @@
+@use './_colors' as *;
+
+$fraunces: 'Fraunces', sans-serif;
+$manrope: 'Manrope', sans-serif;
 
 *, *::before, *::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+
+html {
+    font-size: 62.5%;
+}
+
+@mixin underline($bottomPosition) {
+    display: block;
+    content: '';
+    position: absolute;
+    bottom: $bottomPosition;
+    inset-inline: 0;
+    width: 100%;
+    height: 3px;
+    background-color: $accentColor;
+}
+
+.wrapper {
+    margin-inline: auto;
+    width: 100%;
+    max-width: 1200px;
+}
+
+// NAV
+
+.nav {
+    padding: 2em 1.5em;
+    position: absolute;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1em;
+    z-index: 100;
+
+        &__logo {
+            cursor: pointer;
+        }
+
+        &__link {
+            display: block;
+            position: relative;
+            text-decoration: none;
+            font-family: $manrope;
+            color: $pureWhite;
+            font-weight: 500;
+            font-size: 1.8rem;
+
+                &::before {
+                    @include underline(-5px);
+                }
+        }
+}
+
+// HEADER
+
+.header {
+    position: relative;
+    height: 75vh;
+    padding: 10em 2em;
+    background-color: $maincolor;
+    text-align: center;
+    z-index: 0;
+    
+
+        &::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 50%;
+            bottom: -24%;
+            left: 0;
+            background-color: $maincolor;
+            border-radius: 50%;
+            clip-path: ellipse(100% 60% at 50% 100%);
+            rotate: 180deg;
+            z-index: -1;
+        }
+
+        &__title {
+            font-family: $fraunces;
+            font-size: 4.8rem;
+            color: $pureWhite;
+            font-weight: 500;
+
+               span {
+                    position: relative;
+
+                    &::before {
+                        @include underline(0);
+                    }
+               }
+        }
+
+        &__btn {
+            padding: 1em 2em;
+            margin-block-start: 2.5em;
+            font-family: $manrope;
+            font-size: 1.5rem;
+            font-weight: 700;
+            border: 2px solid transparent;
+            background-color: $accentColor;
+            color: $maincolor;
+            cursor: pointer;
+            transition: background .3s, color .3s, border .3s;
+
+                &:hover {
+                    color: $accentColor;
+                    border: 2px solid $accentColor;
+                    background: none;
+                }
+        }
+
+
+        &__img {
+            display: block;
+            position: absolute;
+            bottom: -200px;
+            transform: translateY(-50%);
+            inset-inline: 0;
+            width: 90%;
+            min-width: 250px;
+            max-width: 350px;
+            margin-inline: auto;
+        }
+}
+
+
+
+
+
+
+
+
+
+/* ========= MEDIA ========== */
 
