@@ -14,14 +14,21 @@ html {
   max-width: 1200px;
 }
 
-.nav {
-  padding: 2em 1.5em;
-  position: absolute;
-  width: 100%;
+.nav-wrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 1em;
+}
+
+body {
+  background-color: #fff;
+}
+
+.nav {
+  padding: 2em 1.5em;
+  position: absolute;
+  width: 100%;
   z-index: 100;
 }
 .nav__logo {
@@ -35,6 +42,10 @@ html {
   color: #fff;
   font-weight: 500;
   font-size: 1.8rem;
+  transition: color 0.3s;
+}
+.nav__link:hover {
+  color: #fbf8ff;
 }
 .nav__link::before {
   display: block;
@@ -48,12 +59,16 @@ html {
 }
 
 .header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   position: relative;
   height: 75vh;
   padding: 10em 2em;
   background-color: #24053e;
   text-align: center;
-  z-index: 0;
+  z-index: 1;
 }
 .header::before {
   content: "";
@@ -69,13 +84,19 @@ html {
   rotate: 180deg;
   z-index: -1;
 }
+.header__bg-icon {
+  display: none;
+}
 .header__title {
+  max-width: 450px;
   font-family: "Fraunces", sans-serif;
   font-size: 4.8rem;
   color: #fff;
   font-weight: 500;
+  margin-block-end: 0.4em;
 }
 .header__title span {
+  display: inline-block;
   position: relative;
 }
 .header__title span::before {
@@ -90,7 +111,6 @@ html {
 }
 .header__btn {
   padding: 1em 2em;
-  margin-block-start: 2.5em;
   font-family: "Manrope", sans-serif;
   font-size: 1.5rem;
   font-weight: 700;
@@ -108,13 +128,183 @@ html {
 .header__img {
   display: block;
   position: absolute;
-  bottom: -200px;
+  bottom: -20rem;
   transform: translateY(-50%);
   inset-inline: 0;
   width: 90%;
   min-width: 250px;
   max-width: 350px;
   margin-inline: auto;
+  pointer-events: none;
 }
 
-/* ========= MEDIA ========== *//*# sourceMappingURL=style.css.map */
+.cards {
+  position: relative;
+  padding: 15em 2em 2em;
+  background-color: #fbf8ff;
+  z-index: 0;
+}
+.cards::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 50%;
+  bottom: -24%;
+  left: 0;
+  background-color: #fbf8ff;
+  border-radius: 50%;
+  -webkit-clip-path: ellipse(100% 60% at 50% 100%);
+          clip-path: ellipse(100% 60% at 50% 100%);
+  rotate: 180deg;
+  z-index: -1;
+}
+.cards__card {
+  text-align: center;
+  margin: 5em 0;
+  color: #24053e;
+}
+.cards__card-number {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  aspect-ratio: 1;
+  margin: 1em auto;
+  border: 1px solid rgba(46, 46, 46, 0.5019607843);
+  border-radius: 50%;
+  font-family: "Fraunces", sans-serif;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.cards__card-title {
+  font-family: "Fraunces", sans-serif;
+  font-size: 2rem;
+  font-weight: 600;
+  margin-block-end: 0.8em;
+}
+.cards__card-text {
+  font-size: 1.8rem;
+  font-weight: 200;
+}
+
+.apply {
+  padding: 30em 2em 2em;
+  text-align: center;
+}
+.apply__box {
+  min-height: 320px;
+  position: relative;
+  padding: 3em;
+  background-color: #24053e;
+  color: #fff;
+}
+.apply__bg-icon {
+  display: none;
+}
+.apply__box-img {
+  display: block;
+  position: absolute;
+  top: -20rem;
+  max-width: 250px;
+  inset-inline: 0;
+  margin-inline: auto;
+  aspect-ratio: 1;
+  z-index: -1;
+}
+.apply__box-title {
+  margin: 0 0 1em;
+  font-family: "Fraunces", sans-serif;
+  font-weight: 500;
+  font-size: 2.5rem;
+}
+.apply__box-text {
+  font-family: "Manrope", sans-serif;
+  color: rgba(255, 255, 255, 0.8392156863);
+  font-size: 1.6rem;
+  line-height: 26px;
+}
+.apply__box-btn {
+  padding: 1em 2em;
+  font-family: "Manrope", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  border: 2px solid transparent;
+  background-color: #43ffa1;
+  color: #24053e;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s, border 0.3s;
+  margin-block-start: 2.5em;
+}
+.apply__box-btn:hover {
+  color: #43ffa1;
+  border: 2px solid #43ffa1;
+  background: none;
+}
+
+.footer {
+  padding: 6em 2em;
+  text-align: center;
+}
+.footer__social-box {
+  display: flex;
+  justify-content: center;
+  gap: 3em;
+  margin-block-start: 5em;
+}
+.footer__link {
+  text-decoration: none;
+}
+
+/* ========= MEDIA ========== */
+@media (768px <= width) {
+  .header__bg-icon {
+    display: block;
+    position: absolute;
+  }
+  .header__bg-icon--left {
+    top: 8em;
+    left: -22em;
+  }
+  .header__bg-icon--right {
+    bottom: 5em;
+    right: -10em;
+  }
+  .cards__card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .cards__card-info {
+    width: 85%;
+    text-align: left;
+  }
+  .cards__card-title {
+    margin-block-end: 1.6em;
+  }
+  .cards__card-text {
+    line-height: 25px;
+  }
+  .apply .wrapper {
+    display: flex;
+    justify-content: flex-end;
+  }
+  .apply__box {
+    padding: 5em;
+    max-width: 550px;
+    text-align: left;
+  }
+  .apply__bg-icon {
+    display: block;
+    position: absolute;
+    bottom: -12em;
+    right: 0;
+  }
+  .apply__box-title {
+    font-size: 4rem;
+  }
+  .apply__box-img {
+    inset-inline: unset;
+    left: -15em;
+    top: -15em;
+  }
+}/*# sourceMappingURL=style.css.map */

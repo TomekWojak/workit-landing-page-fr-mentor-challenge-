@@ -13,6 +13,27 @@ html {
     font-size: 62.5%;
 }
 
+
+.wrapper {
+    margin-inline: auto;
+    width: 100%;
+    max-width: 1200px;
+
+}
+
+.nav-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1em;
+}
+
+body {
+    background-color: $pureWhite;
+    
+}
+
+
 @mixin underline($bottomPosition) {
     display: block;
     content: '';
@@ -24,10 +45,17 @@ html {
     background-color: $accentColor;
 }
 
-.wrapper {
-    margin-inline: auto;
-    width: 100%;
-    max-width: 1200px;
+@mixin btnStyles {
+    padding: 1em 2em;
+    font-family: $manrope;
+    font-size: 1.5rem;
+    font-weight: 700;
+    border: 2px solid transparent;
+    background-color: $accentColor;
+    color: $maincolor;
+    cursor: pointer;
+    transition: background .3s, color .3s, border .3s;
+
 }
 
 // NAV
@@ -36,10 +64,6 @@ html {
     padding: 2em 1.5em;
     position: absolute;
     width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 1em;
     z-index: 100;
 
         &__logo {
@@ -54,7 +78,10 @@ html {
             color: $pureWhite;
             font-weight: 500;
             font-size: 1.8rem;
-
+            transition: color .3s;
+                &:hover {
+                    color: $lightWhite;
+                }
                 &::before {
                     @include underline(-5px);
                 }
@@ -64,12 +91,16 @@ html {
 // HEADER
 
 .header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     position: relative;
     height: 75vh;
     padding: 10em 2em;
     background-color: $maincolor;
     text-align: center;
-    z-index: 0;
+    z-index: 1;
     
 
         &::before {
@@ -86,13 +117,20 @@ html {
             z-index: -1;
         }
 
+        &__bg-icon {
+            display: none;
+        }
+
         &__title {
+            max-width: 450px;
             font-family: $fraunces;
             font-size: 4.8rem;
             color: $pureWhite;
             font-weight: 500;
+            margin-block-end: .4em;
 
                span {
+                    display: inline-block;
                     position: relative;
 
                     &::before {
@@ -102,17 +140,7 @@ html {
         }
 
         &__btn {
-            padding: 1em 2em;
-            margin-block-start: 2.5em;
-            font-family: $manrope;
-            font-size: 1.5rem;
-            font-weight: 700;
-            border: 2px solid transparent;
-            background-color: $accentColor;
-            color: $maincolor;
-            cursor: pointer;
-            transition: background .3s, color .3s, border .3s;
-
+            @include btnStyles;
                 &:hover {
                     color: $accentColor;
                     border: 2px solid $accentColor;
@@ -124,23 +152,213 @@ html {
         &__img {
             display: block;
             position: absolute;
-            bottom: -200px;
+            bottom: -20rem;
             transform: translateY(-50%);
             inset-inline: 0;
             width: 90%;
             min-width: 250px;
             max-width: 350px;
             margin-inline: auto;
+            pointer-events: none;
         }
 }
 
 
 
+// CARD SECTION
+
+.cards {
+    position: relative;
+    padding: 15em 2em 2em;
+    background-color: $lightWhite;
+    z-index: 0;
+
+    
+    &::before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 50%;
+        bottom: -24%;
+        left: 0;
+        background-color: $lightWhite;
+        border-radius: 50%;
+        clip-path: ellipse(100% 60% at 50% 100%);
+        rotate: 180deg;
+        z-index: -1;
+    }
 
 
+    &__card {
+        text-align: center;
+        margin: 5em 0;
+        color: $maincolor;
+    }
+    &__card-number {
+        display: grid;
+        place-items: center;
+        width: 40px;
+        height: 40px;
+        aspect-ratio: 1;
+        margin: 1em auto;
+        border: 1px solid #2e2e2e80;
+        border-radius: 50%;
+        font-family: $fraunces;
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+
+    &__card-title {
+        font-family: $fraunces;
+        font-size: 2rem;
+        font-weight: 600;
+        margin-block-end: .8em;
+    }
+    &__card-text {
+        font-size: 1.8rem;
+        font-weight: 200;
+        
+    }
+
+}
 
 
+// APPLY SECTION
+
+.apply {
+    padding: 30em 2em 2em;
+    text-align: center;
+    &__box {
+        min-height: 320px;
+        position: relative;
+        padding: 3em;
+        background-color: $maincolor;
+        color: $pureWhite;
+    }
+    &__bg-icon {
+        display: none;
+    }
+    &__box-img {
+        display: block;
+        position: absolute;
+        top: -20rem;
+        max-width: 250px;
+        inset-inline: 0;
+        margin-inline: auto;
+        aspect-ratio: 1;
+        z-index: -1;
+    }
+    &__box-title {
+        margin: 0 0 1em;
+        font-family: $fraunces;
+        font-weight: 500;
+        font-size: 2.5rem;
+    }
+    &__box-text {
+        font-family: $manrope;
+        color: #ffffffd6;
+        font-size: 1.6rem;
+        line-height: 26px;
+    }
+    &__box-btn {
+       @include btnStyles;
+       margin-block-start: 2.5em;
+
+       &:hover {
+        color: $accentColor;
+        border: 2px solid $accentColor;
+        background: none;
+    }
+    }
+
+}
+
+
+.footer {
+    padding: 6em 2em;
+    text-align: center;
+
+        &__social-box {
+            display: flex;
+            justify-content: center;
+            gap: 3em;
+            margin-block-start: 5em;
+        }
+        &__link {
+            text-decoration: none;
+
+          
+        }
+}
 
 
 /* ========= MEDIA ========== */
 
+@media (768px <= width) {
+
+    .header {
+
+        &__bg-icon {
+            display: block;
+            position: absolute;
+
+                &--left {
+                    top: 8em;
+                    left: -22em;
+                }
+                &--right {
+                    bottom: 5em;
+                    right: -10em;
+                }
+        }
+
+    }
+
+    .cards {
+
+        &__card {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        &__card-info {
+            width: 85%;
+            text-align: left;
+        }
+        &__card-title {
+            margin-block-end: 1.6em;
+        }
+        &__card-text {
+            line-height: 25px;
+        }
+
+    }
+
+    .apply {
+        .wrapper {
+            display: flex;
+            justify-content: flex-end;
+        }
+        &__box {
+            padding: 5em;
+            max-width: 550px;
+            text-align: left;
+        }
+        
+        &__bg-icon {
+            display: block;
+            position: absolute;
+            bottom: -12em;
+            right: 0;
+        }
+        &__box-title {
+            font-size: 4rem;
+        }
+        &__box-img {
+            inset-inline: unset;
+            left: -15em;
+            top: -15em;
+        }
+    }
+
+}
